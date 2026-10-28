@@ -534,7 +534,7 @@ body > header {
 /* Typed in normal case in the HTML; shown in capitals here so screen readers read words, not letters */
 .site-footer small { display: block; font-size: 0.9rem; letter-spacing: 0.04em; text-transform: uppercase; }
 
-/* ---------- 14. Embedded Google Calendar (performances.html) ---------- */
+/* ---------- calendar embed ---------- */
 .calendar-embed { display: block; width: 100%; height: 38rem; max-height: 80vh; border: 0; margin-bottom: 1rem; }
 
 /* ---------- contact page ---------- */
@@ -610,6 +610,15 @@ body > header {
 }
 .social-grid a:hover img { transform: scale(1.04); opacity: 0.9; }
 
+.social-grid video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #000;
+}
+.social-grid figure { margin: 0; }
+.social-grid figcaption { font-size: 0.875rem; margin-top: 0.5rem; }
+
 /* ---------- potential Members ---------- */
 /* Audition status box: grey-green note when closed; add .status-note--open when auditions open */
 .status-note {
@@ -624,7 +633,7 @@ body > header {
 .prose .status-note__title { margin-top: 0; }
 .status-note p:last-child { margin-bottom: 0; }
 
-/* Quick facts */
+/* quick facts */
 .glance { display: grid; gap: 1rem 2rem; margin: 0 0 1rem; }
 @media (min-width: 36em) { .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .glance > div { border-top: 3px solid var(--dark-green); padding-top: 0.5rem; }
