@@ -97,12 +97,8 @@
           <!-- Phones get the full 3:2 group photo; wider screens get the tighter 2:1 crop.
                Browsers pick the smallest file they can use: AVIF, then WebP, then JPEG. -->
           <picture>
-            <source media="(min-width: 48em)" type="image/avif" srcset="images/all-members-wide-768.avif 768w, images/all-members-wide-1536.avif 1536w" sizes="(min-width: 75em) 72rem, 100vw" width="1536" height="764" />
-            <source media="(min-width: 48em)" type="image/webp" srcset="images/all-members-wide-768.webp 768w, images/all-members-wide-1536.webp 1536w" sizes="(min-width: 75em) 72rem, 100vw" width="1536" height="764" />
             <source media="(min-width: 48em)" srcset="images/all-members-wide-768.jpg 768w, images/all-members-wide-1536.jpg 1536w" sizes="(min-width: 75em) 72rem, 100vw" width="1536" height="764" />
-            <source type="image/avif" srcset="images/all-members-768.avif 768w, images/all-members-1536.avif 1536w" sizes="100vw" />
-            <source type="image/webp" srcset="images/all-members-768.webp 768w, images/all-members-1536.webp 1536w" sizes="100vw" />
-            <img
+           <img
               src="images/all-members-1536.jpg"
               srcset="images/all-members-768.jpg 768w, images/all-members-1536.jpg 1536w"
               sizes="100vw"
