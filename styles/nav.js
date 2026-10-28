@@ -2,8 +2,7 @@
    - Menu button toggles the mobile menu (aria-expanded / aria-controls)
    - Chevron buttons toggle subnavs using the "disclosure" pattern
    - Escape closes an open submenu/menu and returns focus to its button
-   - Tapping outside, or tabbing out of, an open menu closes it (the header is
-     sticky, so a forgotten open menu would otherwise cover the page)
+   - Tapping outside, or tabbing out of, an open menu closes it 
    - Opening the mobile menu also opens the section you're in (e.g. About)
    - Home page: the site name in the bar stays hidden while the big logo is on
      screen, then fades in once you scroll past it
@@ -112,3 +111,15 @@
   if (desktop.addEventListener) { desktop.addEventListener('change', reset); }
   else if (desktop.addListener) { desktop.addListener(reset); }
 })();
+
+document.querySelectorAll('.social-grid a').forEach((link) => {
+  const reset = () => link.classList.remove('is-dismissed');
+  link.addEventListener('mouseleave', reset);
+  link.addEventListener('blur', reset);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  document.querySelectorAll('.social-grid a:hover, .social-grid a:focus-visible')
+    .forEach((link) => link.classList.add('is-dismissed'));
+});
