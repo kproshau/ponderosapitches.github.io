@@ -84,28 +84,20 @@
       <div class="site-banner">
         <div class="grid-container">
           <h1 class="site-logo">
-            <picture>
-              <source type="image/webp" srcset="images/logo.webp" />
-              <img src="images/logo.png" width="1045" height="299" alt="The Ponderosa Pitches" />
-            </picture>
+            <img src="images/logo.png" width="1045" height="299" alt="The Ponderosa Pitches" />
           </h1>
           <p class="subtitle">Elevated treble music made with heart and intention</p>
         </div>
       </div>
       <div class="grid-container">
         <figure class="hero-photo">
-          <!-- Phones get the full 3:2 group photo; wider screens get the tighter 2:1 crop.
-               Browsers pick the smallest file they can use: AVIF, then WebP, then JPEG. -->
-          <picture>
-            <source media="(min-width: 48em)" srcset="images/all-members-wide-768.jpg 768w, images/all-members-wide-1536.jpg 1536w" sizes="(min-width: 75em) 72rem, 100vw" width="1536" height="764" />
-           <img
-              src="images/all-members-1536.jpg"
-              srcset="images/all-members-768.jpg 768w, images/all-members-1536.jpg 1536w"
-              sizes="100vw"
-              width="1536" height="1024"
-              fetchpriority="high"
-              alt="The nine members of the Ponderosa Pitches, dressed in shades of green and black, stand in a row smiling in front of a wall of wooden cabinets." />
-          </picture>
+          <img
+            src="images/all-members-1536.jpg"
+            srcset="images/all-members-768.jpg 768w, images/all-members-1536.jpg 1536w"
+            sizes="(min-width: 75em) 72rem, 100vw"
+            width="1536" height="1024"
+            fetchpriority="high"
+            alt="The nine members of the Ponderosa Pitches, dressed in shades of green and black, stand in a row smiling in front of a wall of wooden cabinets." />
         </figure>
       </div>
 
@@ -202,8 +194,8 @@
       </div>
     </footer>
 
-    <script src="js/nav.js"></script>
-    <script src="js/upcoming.js"></script>
+    <script src="styles/nav.js"></script>
+    <script src="styles/upcoming.js"></script>
     <script src="js/signup.js"></script>
   </body>
 </html>
