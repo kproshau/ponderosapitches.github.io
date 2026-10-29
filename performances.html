@@ -55,7 +55,15 @@
                   <li><a href="potential-members.html">Potential Members</a></li>
                 </ul>
               </li>
-              <li class="is-current"><a href="performances.html" aria-current="page">Performances</a></li>
+              <li class="has-subnav is-current">
+                <a href="performances.html" aria-current="page">Performances</a>
+                <button class="subnav-toggle" type="button" aria-expanded="false" aria-controls="performances-subnav">
+                  <span class="visually-hidden">Show Performances pages</span>
+                </button>
+                <ul class="subnav" id="performances-subnav">
+                  <li><a href="repertoire.html">Repertoire</a></li>
+                </ul>
+              </li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
           </nav>
@@ -80,7 +88,7 @@
             <h2 id="upcoming-heading">Coming up</h2>
 
             <ul class="event-list" role="list" hidden>
-              <!-- COPY THIS <li> FOR EACH PERFORMANCE (soonest first), then delete the `hidden` attribute above
+              <!-- COPY THIS <li> FOR EACH PERFORMANCE then delete the `hidden` attribute above
               <li class="event">
                 <div class="event__badge" aria-hidden="true">
                   <span class="event__month">Dec</span>
@@ -101,9 +109,7 @@
         </div>
       </section>
 
-      <!-- FULL CALENDAR (Google Calendar embed). mode=AGENDA gives a list view that works far better on
-           phones and with screen readers than the month grid. Width is 100 percent (not a fixed 800px) so it
-           fits any screen; the title attribute names the frame for screen-reader users. -->
+      <!-- FULL CALENDAR (Google Calendar embed) -->
       <section class="upcoming calendar" aria-labelledby="calendar-heading">
         <div class="grid-container">
           <div class="prose">
