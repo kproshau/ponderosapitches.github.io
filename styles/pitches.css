@@ -580,7 +580,7 @@ body > header {
   transform: rotate(45deg);
 }
 
-/* media grid: three square tiles across at every size */
+/* ---------- media grid (contact page) ---------- */
 .social { max-width: 62rem; margin: 3.5rem auto 0; }
 .social__head {
   display: flex;
@@ -592,27 +592,26 @@ body > header {
 }
 .social__head h2 { margin: 0; }
 .social__follow { font-weight: 700; }
+
+/* 3 across when there's room; drops to 2, then 1 column once a tile would be
+   narrower than --tile-min. min(100%, ...) stops a tile overflowing a very narrow screen. */
 .social-grid {
+  --tile-min: 200px;
+  --tile-gap: clamp(0.35rem, 1vw, 0.75rem);
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(0.35rem, 1vw, 0.75rem);
+  gap: var(--tile-gap);
+  grid-template-columns: repeat(auto-fill,
+    minmax(min(100%, max(var(--tile-min), (100% - 2 * var(--tile-gap)) / 3)), 1fr));
 }
 
-/* .social-grid a { display: block; aspect-ratio: 1; overflow: hidden; background: var(--grey); }
-.social-grid img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.35s ease, opacity 0.2s ease;
-} */
-
+/* Image tiles overflow: hidden keeps the hover zoom inside the tile */
 .social-grid a {
   position: relative;
   display: block;
+  overflow: hidden;
   color: inherit;
   text-decoration: none;
 }
@@ -620,6 +619,7 @@ body > header {
   display: block;
   width: 100%;
   height: auto;
+  transition: transform 0.35s ease, opacity 0.2s ease;
 }
 
 /* Default (touch screens, no hover): caption sits below the image, always visible */
@@ -629,7 +629,7 @@ body > header {
   font-size: 0.875rem;
 }
 
-/* Overlay only on devices that can hover */
+/* Overlay caption + zoom only on devices that can hover */
 @media (hover: hover) and (pointer: fine) {
   .social-grid__caption {
     position: absolute;
@@ -637,7 +637,7 @@ body > header {
     display: flex;
     align-items: flex-end;
     padding: 1rem;
-    background: rgb(28 28 28 / 0.8);  /* your #1c1c1c brand dark */
+    background: rgb(28 28 28 / 0.8);
     color: #fff;
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -649,26 +649,27 @@ body > header {
   .social-grid a.is-dismissed .social-grid__caption {
     opacity: 0;
   }
+  .social-grid a:hover img { transform: scale(1.04); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .social-grid__caption { transition: none; }
-}
-.social-grid a:focus-visible {
-  outline: 3px solid currentColor;
-  outline-offset: 3px;
-}
-.social-grid a:hover img { transform: scale(1.04); opacity: 0.9; }
+/* Video tiles: no overlay; caption sits below */
+.social-grid figure { margin: 0; }
 .social-grid video {
   display: block;
   width: 100%;
   height: auto;
   background: #000;
 }
-.social-grid figure { margin: 0; }
 .social-grid figcaption { font-size: 0.875rem; margin-top: 0.5rem; }
 
-/* ---------- potential Members ---------- */
+/* Video captions. Size is left alone so viewers' system caption settings still apply. */
+.social-grid video::cue {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  background: rgb(0 0 0 / 0.8);
+}
+
+/* ---------- potential members ---------- */
 /* Audition status box: grey-green note when closed; add .status-note--open when auditions open */
 .status-note {
   margin: 0 0 2.5rem;
@@ -696,7 +697,7 @@ body > header {
 }
 .glance dd { margin: 0; }
 
-/* Audition steps: numbered */
+/* audition steps: numbered */
 .steps { list-style: none; padding: 0; margin: 0 0 1rem; counter-reset: step; display: grid; gap: 1.25rem; }
 .steps > li {
   counter-increment: step;
@@ -726,6 +727,7 @@ body > header {
 /* ---------- motion ---------- */
 @view-transition { navigation: auto; }
 
+/* Turns off animations on the site, including the media-grid fade and zoom */
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
   html { scroll-behavior: auto; }
