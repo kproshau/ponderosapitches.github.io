@@ -781,6 +781,6 @@ body > header {
 }
 .rep-list li:first-child { border-top: 1px solid var(--grey); }
 .rep-list__title { font-style: normal; font-weight: 700; overflow-wrap: break-word; }
-.rep-list__credit { font-style: italic; }
+.rep-list__credit { font-style: italic; text-align: right; margin-left: auto;}
 .rep-list__arr { display: block; font-style: normal; font-size: 0.95rem; }
 
