@@ -784,7 +784,7 @@ body > header {
 .rep-list li:first-child { border-top: 1px solid var(--grey); }
 .rep-list__title { font-style: normal; font-weight: 700; overflow-wrap: break-word; }
 .rep-list__credit { font-style: italic; }
-   @media (min-width: 40em) {
+   @media (min-width: 32em) {
      .rep-list__credit { margin-left: auto; text-align: right; }
 }
 .rep-list__arr { display: block; font-style: normal; font-size: 0.95rem; }
