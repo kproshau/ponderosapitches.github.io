@@ -89,7 +89,6 @@
     </header>
 
     <main id="main" tabindex="-1">
-      <!-- Logo banner sits in <main> so the sticky header holds only the menu bar. -->
       <div class="site-banner">
         <div class="grid-container">
           <h1 class="site-logo">
@@ -117,24 +116,43 @@
                data-calendar-id="1627cff9d2b5d98e09a92a191239ea5e7a8fe483bf3e0736950d783f91c422a0@group.calendar.google.com" data-api-key="" data-limit="3" data-timezone="America/Los_Angeles">
         <div class="grid-container">
           <h2 id="upcoming-heading">Upcoming Performances</h2>
-
-          <!-- Hidden while the list has events; delete `hidden` (and the <ul> items)
-               when nothing is scheduled. -->
           <ul class="event-list" role="list" hidden>
-            <!-- COPY SECTION <li> FOR EACH PERFORMANCE (soonest first)
-            <li class="event">
-              <div class="event__badge" aria-hidden="true">
-                <span class="event__month">Dec</span>
-                <span class="event__day">6</span>
-              </div>
-              <div class="event__body">
-                <h3 class="event__title">Event name</h3>
-                <p class="event__meta"><time datetime="2026-12-06T14:00-08:00">Sunday, December 6, 2026 at 2:00 PM</time></p>
-                <p class="event__meta"><span class="visually-hidden">Location: </span>Venue name, Bend</p>
-                <a class="event__link" href="https://example.com/tickets">Tickets<span class="visually-hidden"> for Event name</span></a>
-              </div>
-            </li>
-            -->
+              <li class="event">
+                <div class="event__badge" aria-hidden="true">
+                  <span class="event__month">Nov</span>
+                  <span class="event__day">7</span>
+                </div>
+                <div class="event__body">
+                  <h3 class="event__title">Friends and Family Concert</h3>
+                  <p class="event__meta"><time datetime="2026-12-06T14:00-08:00">Saturday, November 7, 2026 at 7:00 PM</time></p>
+                  <p class="event__meta"><span class="visually-hidden">Location: </span>Nativity Lutheran Church, Bend</p>
+                  <a class="event__link" href="https://partiful.com/e/KEgpt5aQljSMpYLuL9Bg?">Planning to attend? Please RSVP!</a>
+                </div>
+              </li>
+              <li class="event">
+                <div class="event__badge" aria-hidden="true">
+                  <span class="event__month">Nov</span>
+                  <span class="event__day">11</span>
+                </div>
+                <div class="event__body">
+                  <h3 class="event__title">Veteran's Day Parade</h3>
+                  <p class="event__meta"><time datetime="2026-12-06T14:00-08:00">Wednesday, November 11, 2026 at 11:00 AM</time></p>
+                  <p class="event__meta"><span class="visually-hidden">Location: </span>Downtown Bend</p>
+                  <p class="event__meta"><em>Hear the Pitches open the Parade with the Star Spangled Banner.</em></p>
+                  <a class="event__link" href="https://covo-us.org/event/veterans-day-parade/">Parade Info</span></a>
+                </div>
+              </li>
+              <li class="event">
+                <div class="event__badge" aria-hidden="true">
+                  <span class="event__month">Nov</span>
+                  <span class="event__day">22</span>
+                </div>
+                <div class="event__body">
+                  <h3 class="event__title">Sunday Service - Unity Spiritual Community of Central Oregon</h3>
+                  <p class="event__meta"><time datetime="2026-12-06T14:00-08:00">Sunday, November 22, 2026 at 11:00 AM</time></p>
+                  <a class="event__link" href="https://unitycentraloregon.org/">Unity Spiritual Community of Central Oregon</span></a>
+                </div>
+              </li>
           </ul>
 
           <p class="event-empty">New performances are posted here as soon as they're scheduled. Subscribe to our newsletter below to be the first to hear about them.</p>
