@@ -734,7 +734,7 @@ body > header {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 
-/* ---------- repertoire ----------
+/* ---------- repertoire ---------- */
 .rep-section { margin-bottom: 2.5rem; }
 .features {
   list-style: none;
