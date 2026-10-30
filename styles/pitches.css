@@ -821,7 +821,7 @@ body > header {
 .site-footer::before {
   bottom: 100%;
   height: clamp(3rem, 2rem + 4vw, 5rem);
-  background-color: var(--dark-green);
+  background-color: var(--light-green);
   margin-bottom: -2px;        /* trunks overlap the bar so no hairline gap shows */
 }
 
