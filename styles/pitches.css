@@ -18,7 +18,11 @@
   --nav-height: 3.5rem;
   --gap: clamp(1rem, 0.6rem + 1.6vw, 1.75rem);
   --content-width: 75rem;
-  --prose-width: 42rem;
+  --prose-width: 52rem;     /* fits the 2-up repertoire cards (2 x 25rem + gap) */
+  --measure: 42rem;         /* comfortable line length for centered intro text */
+
+  --trees: url("../images/pine-trees.svg");
+  --trees-ratio: 1890 / 709;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -334,7 +338,7 @@ body > header {
   margin: 2rem 0;
   padding: 3.5rem 0;
 }
-#intro p { max-width: var(--prose-width); margin-left: auto; margin-right: auto; }
+#intro p { max-width: var(--measure); margin-left: auto; margin-right: auto; }
 @media (min-width: 48em) { #intro { padding: 5rem 0; } }
 
 /* ---------- utilities ---------- */
@@ -789,3 +793,38 @@ body > header {
 }
 .rep-list__arr { display: block; font-style: normal; font-size: 0.95rem; }
 
+
+/* ---------- pine-tree motif ---------- */
+/* Decorative only: drawn with CSS masks on pseudo-elements, so screen readers never see it
+   and the color is set with background-color. Hidden in forced-colors mode and print. */
+.page-title, #intro { position: relative; isolation: isolate; overflow: hidden; }
+.page-title::before, #intro::before,
+.site-footer::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  -webkit-mask: var(--trees) repeat-x center bottom / auto 100%;
+          mask: var(--trees) repeat-x center bottom / auto 100%;
+}
+
+/* Grey bands: a faint treeline along the bottom edge, behind the text */
+.page-title::before, #intro::before {
+  height: clamp(4.5rem, 3rem + 6vw, 8rem);
+  background-color: #cdcdcd;
+}
+.page-title { padding-bottom: clamp(2.5rem, 1.5rem + 4vw, 4rem); }
+
+/* Footer: dark-green treeline standing on top of the black bar */
+.site-footer { position: relative; margin-top: clamp(3rem, 2rem + 4vw, 5rem); }
+.site-footer::before {
+  bottom: 100%;
+  height: clamp(3rem, 2rem + 4vw, 5rem);
+  background-color: var(--dark-green);
+  margin-bottom: -2px;        /* trunks overlap the bar so no hairline gap shows */
+}
+
+@media (forced-colors: active), print {
+  .page-title::before, #intro::before, .site-footer::before { display: none; }
+}
