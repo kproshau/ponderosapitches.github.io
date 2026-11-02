@@ -575,7 +575,7 @@ body > header {
   line-height: 1.2;
 }
 
-/* Lists with a check mark instead of a bullet */
+/* Lists with a check mark instead of a bullet (list is currently commented out)  */
 .check-list { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: 0.4rem; }
 .check-list li { position: relative; padding-left: 1.75rem; }
 .check-list li::before {
@@ -588,6 +588,18 @@ body > header {
   border-right: 3px solid var(--dark-green);
   border-bottom: 3px solid var(--dark-green);
   transform: rotate(45deg);
+}
+
+/* Audition and newsletter notes under the booking and contact columns */
+.contact-more {
+  max-width: 62rem;
+  margin: 2.5rem auto 0;
+  display: grid;
+  gap: 0 3.5rem;
+}
+.contact-more p { margin: 0 0 1rem; }
+@media (min-width: 56em) {
+  .contact-more { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
 }
 
 /* ---------- media grid (contact page) ---------- */
