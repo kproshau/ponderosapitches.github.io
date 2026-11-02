@@ -535,7 +535,7 @@ body > header {
   background-color: var(--blackish);
   color: var(--offwhite);
   text-align: center;
-  padding: 2rem 0 calc(2rem + env(safe-area-inset-bottom, 0px));
+  padding: 2rem 0 calc(5rem + env(safe-area-inset-bottom, 0px));
 }
 .site-footer a { color: var(--light-green); }
 .site-footer a:hover, .site-footer a:focus { color: #fff; }
