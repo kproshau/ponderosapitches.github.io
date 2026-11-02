@@ -554,6 +554,9 @@ body > header {
   max-width: 62rem;
   margin: 0 auto;
 }
+/* Removes the extra space under the last item in each contact column */
+.contact-layout > * > :last-child { margin-bottom: 0; }
+
 @media (min-width: 56em) {
   .contact-layout { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 3.5rem; align-items: start; }
 }
@@ -590,16 +593,18 @@ body > header {
   transform: rotate(45deg);
 }
 
-/* Audition and newsletter notes under the booking and contact columns */
+/* Audition and newsletter notes: a closing row for the contact section */
 .contact-more {
   max-width: 62rem;
-  margin: 2.5rem auto 0;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--grey);
   display: grid;
-  gap: 0 3.5rem;
+  gap: 1rem 3.5rem;
 }
-.contact-more p { margin: 0 0 1rem; }
+.contact-more p { margin: 0; }
 @media (min-width: 56em) {
-  .contact-more { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+  .contact-more { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); margin-top: 2.5rem; }
 }
 
 /* ---------- media grid (contact page) ---------- */
