@@ -123,3 +123,8 @@ document.addEventListener('keydown', (e) => {
   document.querySelectorAll('.social-grid a:hover, .social-grid a:focus-visible')
     .forEach((link) => link.classList.add('is-dismissed'));
 });
+
+/* When a video finishes, show its poster image again instead of the final (black) frame */
+document.querySelectorAll('video[poster]').forEach(function (video) {
+  video.addEventListener('ended', function () { video.load(); });
+});
