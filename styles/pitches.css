@@ -577,6 +577,10 @@ body > header {
   color: var(--dark-green);
   line-height: 1.2;
 }
+/* aligns contact page h2 when displayed side by side */
+@media (min-width: 56em) {
+  .reach { padding-top: clamp(1.25rem, 3vw, 2rem); }
+}
 
 /* Lists with a check mark instead of a bullet (list is currently commented out)  */
 .check-list { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: 0.4rem; }
