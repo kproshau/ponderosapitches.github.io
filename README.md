@@ -1,4 +1,4 @@
-# The Ponderosa Pitches — Website
+# The Ponderosa Pitches — Site Management Details
 
 The site is hosted on **Netlify**, which watches this repository:
 
