@@ -1,17 +1,23 @@
 # The Ponderosa Pitches — Site Management Details
 
-The site is hosted on **Netlify**, which watches this repository:
+The site's files live in the GitHub repository **[ponderosapitches/publicwebsite](https://github.com/ponderosapitches/publicwebsite)**, owned by the Pitches' GitHub organization, [`ponderosapitches`](https://github.com/ponderosapitches). The site is hosted on **Netlify**, which watches this repository:
 
 | Branch | Publishes to | Who sees it |
 |---|---|---|
 | `main` | **https://ponderosapitches.com** (the live site) | Everyone |
 | `staging` | **https://staging--ponderosapitches.netlify.app** (the test site) | Anyone with the link, so don't post anything private there |
 
-Any commit to either branch shows up on its site within a minute or two. **Make changes on `staging` first, check them on the test site, then merge them into `main` in one go.** See [The editing workflow](#the-editing-workflow-test-on-staging-then-go-live).
+## Netlify Plan Info
+The ponderosapitches.com *domain* is held through [porkbun](https://porkbun.com/). The actual site hosting service is through [Netlify](https://app.netlify.com/projects/ponderosapitches/overview). The Pitches 'project' is on a free plan, which has a monthly allotment of 300 credits. [(More on how credits work here)](https://docs.netlify.com/manage/accounts-and-billing/billing/billing-for-credit-based-plans/how-credits-work/#credits-usage-for-metered-billing). Credits are used for deploys to the live site and metered traffic. Because the Pitches website is very lightweight, regular web traffic will use very few credits. The majority of our allotment use will come from deploys from the main branch of the git repo.
 
+To conserve credits, the Github repo is set up such that all updates publish first to the staging branch, then are merged with main as a single pull request. Any commit to either branch shows up on its site within a minute or two. The `main` branch is protected by a GitHub ruleset: changes can reach it **only through a pull request**. (Repository admins are on the ruleset's bypass list for emergencies. See [If something breaks](#if-something-breaks) and [The editing workflow](#the-editing-workflow-test-on-staging-then-go-live) for more details.
+
+**TL;DR** - consolidating web updates into a single pull request will keep us from hitting the credit cap. It resets every month, so reaching the limit is unlikely anyway, but better safe than sorry.
+
+## Before you start editing
 This guide covers the updates most likely to come up:
 
-- [Before you start](#before-you-start)
+- [Getting access](#getting-access)
 - [The editing workflow](#the-editing-workflow-test-on-staging-then-go-live)
 - [Adding a new member](#adding-a-new-member)
 - [Moving a member to Emeritus](#moving-a-member-to-emeritus)
@@ -23,8 +29,15 @@ This guide covers the updates most likely to come up:
 - [If something breaks](#if-something-breaks)
 
 ---
+### Getting access
 
-## Before you start
+You edit the site using your **own** GitHub account. There's no shared login for the Pitches organization. 
+
+1. If you don't have one, create a free account at [github.com](https://github.com).
+2. Ask an owner of the [`ponderosapitches` organization](https://github.com/ponderosapitches) to invite you. They go to the organization's **People** tab → **Invite member**, enter your GitHub username or email, and then give you **Write** access to the `publicwebsite` repository.
+3. Accept the invitation from the email GitHub sends you (or from the notification on github.com).
+
+Owners: keep **at least two organization owners** at all times, so the group is never locked out if someone leaves. Anyone who no longer needs access can be removed from **People** without affecting the site.
 
 ### How the files are organized
 
@@ -47,11 +60,12 @@ This guide covers the updates most likely to come up:
 | `images/default-tree.jpg` | Placeholder photo for members without a headshot |
 
 ### Ground rules for editing HTML
+Github does not use a WYSIWYG editor, so all updates will need to happen in the actual page HTML. Fear not! This is mostly a matter of copy and paste. 
 
 - **Copy an existing block and change the text.** Every section below has a block you can copy. That's the safest way to keep the layout and accessibility working.
-- Every opening tag needs its closing tag (`<li>` … `</li>`, `<p>` … `</p>`). Most broken layouts come from a missing or extra closing tag.
+- Every opening tag needs its closing tag (`<li>` … `</li>`, `<p>` … `</p>`). If stuff breaks, it's most likely because of a missing or extra closing tag.
 - Special characters: type `&amp;` for **&**. Apostrophes and quotes are fine as-is.
-- Anything between `<!--` and `-->` is a **comment**. It's hidden from visitors. You can "turn off" a block (for example, a member on leave) by wrapping it in a comment instead of deleting it. `current.html` already does this for one card.
+- Anything between `<!--` and `-->` is a **comment**. It's hidden from visitors. You can "turn off" a block (for example, a member on leave) by wrapping it in a comment instead of deleting it. `current.html` has an example.
 - File names: lowercase, no spaces, hyphens between words (`jane-doe.jpg`, not `Jane Doe.JPG`). Names are case-sensitive on the live site.
 
 ---
@@ -62,7 +76,7 @@ You don't need any software. Everything can be done on GitHub.com in a web brows
 
 ### 1. Make your changes on `staging`
 
-1. Sign in to GitHub and open this repository.
+1. Sign in to GitHub and open **[ponderosapitches/publicwebsite](https://github.com/ponderosapitches/publicwebsite)**.
 2. **Switch to the `staging` branch.** Click the branch dropdown near the top left (it usually says **main**) and choose **staging**. Check that it says `staging` before you edit anything.
 3. Click the file you want to change (for example `current.html`), then click the **pencil icon** (Edit this file).
 4. Make your change.
@@ -91,13 +105,15 @@ Within a minute or two, the changes are live at **https://ponderosapitches.com**
 
 ### 4. Keep `staging` in sync
 
-If anyone edits `main` directly, `staging` falls behind. Before starting new work, bring it up to date: **Pull requests → New pull request**, this time with **base: `staging`** and **compare: `main`**. Create and merge it. If GitHub says there's nothing to compare, `staging` is already up to date.
+Normally, merging `staging` into `main` leaves the two branches matching, so there's nothing to sync. But if `main` ever gets a change that didn't come from `staging` (for example, a pull request from some other branch), `staging` falls behind. Before starting new work, bring it up to date: **Pull requests → New pull request**, this time with **base: `staging`** and **compare: `main`**. Create and merge it. This is free, since only the test site redeploys. If GitHub says there's nothing to compare, `staging` is already up to date.
+
+> **If the sync pull request shows a conflict, don't resolve it there.** GitHub saves conflict fixes to the *compare* branch, which here is `main`, and the ruleset will block that. Close the sync pull request and instead open one with **base: `main`** ← **compare: `staging`**. Resolve the conflict there (the fix is saved to `staging`, for free), check the test site, then merge. Both branches end up matching.
 
 ### Why batch changes this way?
 
-Netlify's free plan includes a monthly allowance of credits. **Every publish to the live site (`main`) uses some of it. Commits to `staging` and Deploy Previews are free.** In GitHub's web editor, each saved file is a separate commit, so editing `main` directly can burn through several publishes for one small update. Batching everything on `staging` and merging once means one publish per update. Netlify's **Usage** page shows how much of the month's allowance is left. On the free plan, if it runs out, the site pauses until the next month rather than charging anyone.
+As previously mentioned, Netlify's free plan includes a monthly allowance of credits. **Every publish to the live site (`main`) uses some of it. Commits to `staging` and Deploy Previews are free.** Because `main` only changes through pull requests, each merge is one publish, however many commits went into `staging` beforehand. So batch related changes together and merge once, rather than opening a separate pull request for every small edit. Netlify's **Usage** page shows how much of the month's allowance is left. On the free plan, if it runs out, the site pauses until the next month rather than charging anyone.
 
-> **Small urgent fix?** It's OK to edit `main` directly, like a wrong time on tonight's event. Just keep it to one commit (use github.dev for multiple files), then sync `staging` afterward (step 4).
+> **Small urgent fix?** For something like a wrong time on tonight's event, Repository Admins can push updates directly to ('main'). At time of writing, this is (Kristine)[https://github.com/kproshau] and whomever is associated with the account created with the Pitches google account. Otherwise the staging > pull request > merge to main workflow is quick. Updates happen almost in real time.
 
 ---
 
@@ -458,6 +474,9 @@ For a quick automated check, run the free [WAVE checker](https://wave.webaim.org
 - **Every change is saved in history and can be undone.** On GitHub, open the file and click **History** to see past versions. Open the version before the bad change, copy its contents, and paste them back into the editor. Or, if you're comfortable with Git, use `git revert <commit>`.
 - **The layout is suddenly broken below a certain point:** almost always a missing or extra closing tag (`</li>`, `</div>`, `</p>`) in the last block you edited. Compare it line by line with a block you didn't touch.
 - **An image or video doesn't appear:** check that the file name in the HTML exactly matches the uploaded file, including capitalization and extension (`.jpg` vs `.jpeg` vs `.png`).
+- **GitHub won't let you commit to `main`:** that's expected. `main` is protected by a branch ruleset that requires a pull request for every change, and it also blocks deleting the branch and overwriting its history. Make the change on `staging` and merge it with a pull request instead (see [The editing workflow](#the-editing-workflow-test-on-staging-then-go-live)). The same applies when resolving a merge conflict: GitHub will refuse if the fix would be saved to `main`. Organization owners can review or change the rules under the repository's **Settings → Rules → Rulesets**.
+- **Emergency fix by an admin:** repository admins are on the ruleset's bypass list, so they *can* commit to `main` directly, and GitHub shows a warning before letting them. Save this for when the pull request route isn't possible. Keep it to a single commit (github.dev can commit several files at once), then sync `staging` from `main` afterward (step 4 of the editing workflow) so the two branches don't conflict later.
+- **Netlify stopped deploying after a change on GitHub** (for example, the repository was renamed or moved): in Netlify, go to **Project configuration → Build & deploy → Continuous deployment → Repository → Manage repository → Link to a different repository**, and pick `ponderosapitches/publicwebsite` again. If it isn't listed, choose **Configure Netlify on GitHub** and give the Netlify app access to that repository. Afterward, check that the production branch is still `main` and `staging` is still listed under branch deploys.
 - **The change isn't showing up:** wait a couple of minutes, then hard-refresh. Check that you committed to the branch you meant to (`staging` vs `main`). In Netlify, the project's **Deploys** tab lists each deploy with its branch and status. A **Failed** deploy shows a log explaining why, and the site keeps showing the last good version in the meantime.
 - **Captions don't show:** the `.vtt` file must start with the line `WEBVTT`, and each timestamp line must use the format `00:00:00.000 --> 00:00:04.000`.
 
@@ -465,8 +484,8 @@ For a quick automated check, run the free [WAVE checker](https://wave.webaim.org
 
 | Service | Used for | Where it's referenced |
 |---|---|---|
-| GitHub (this repo) | Stores the site's files and their history | — |
-| Netlify (project `ponderosapitches`) | Hosting, HTTPS certificate, live and staging sites | Watches the `main` and `staging` branches of this repo |
+| GitHub: organization [`ponderosapitches`](https://github.com/ponderosapitches), repository [`publicwebsite`](https://github.com/ponderosapitches/publicwebsite) | Stores the site's files and their history; controls who can edit | Organization **People** tab (members and owners) |
+| Netlify (project `ponderosapitches`) | Hosting, HTTPS certificate, live and staging sites | Linked to `ponderosapitches/publicwebsite`; watches its `main` and `staging` branches |
 | Porkbun | The `ponderosapitches.com` domain and email forwarding for `hello@` | DNS records at Porkbun (see below) |
 | Google Calendar | Performance calendar embed and subscribe buttons | `performances.html` (and `index.html` if automatic events are on) |
 | Google Forms | Booking inquiry form | `contact.html` |
